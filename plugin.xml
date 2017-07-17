@@ -94,5 +94,24 @@
         <!--GCDWebServer dependencies-->
         <framework src="libz.tbd" />
 
+        <!-- Popup Bridge -->
+        <header-file src="src/ios/AppDelegate+PopupBridge.h" />
+        <source-file src="src/ios/AppDelegate+PopupBridge.m" />
+        <framework src="PopupBridge" type="podspec" spec="~> 0.1.0" />
+        <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+            <array>
+                <dict>
+                    <key>CFBundleTypeRole</key>
+                    <string>Editor</string>
+                    <key>CFBundleURLName</key>
+                    <string></string>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>$PACKAGE_NAME.popupbridge</string>
+                    </array>
+                </dict>
+            </array>
+        </config-file>
+
     </platform>
 </plugin>

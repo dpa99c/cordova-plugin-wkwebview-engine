@@ -65,6 +65,7 @@
         }
 
         self.engineWebView = [[WKWebView alloc] initWithFrame:frame];
+
         self.fileQueue = [[NSOperationQueue alloc] init];
 
         self.webServer = [[GCDWebServer alloc] init];
@@ -122,6 +123,7 @@
     WKWebView* wkWebView = [[WKWebView alloc] initWithFrame:self.engineWebView.frame configuration:configuration];
     wkWebView.UIDelegate = self.uiDelegate;
     self.engineWebView = wkWebView;
+    self.popupBridge = [[POPPopupBridge alloc] initWithWebView:wkWebView delegate:self];
 
     if (IsAtLeastiOSVersion(@"9.0") && [self.viewController isKindOfClass:[CDVViewController class]]) {
         wkWebView.customUserAgent = ((CDVViewController*) self.viewController).userAgent;
@@ -549,6 +551,16 @@ static void * KVOContext = &KVOContext;
     } else {
         decisionHandler(WKNavigationActionPolicyCancel);
     }
+}
+
+#pragma mark - POPPopupBridge
+
+- (void)popupBridge:(POPPopupBridge *)bridge requestsPresentationOfViewController:(UIViewController *)viewController {
+    [self.viewController presentViewController:viewController animated:YES completion:nil];
+}
+
+- (void)popupBridge:(POPPopupBridge *)bridge requestsDismissalOfViewController:(UIViewController *)viewController {
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
