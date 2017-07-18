@@ -19,11 +19,12 @@
 
 #import <WebKit/WebKit.h>
 #import <Cordova/CDV.h>
-#import "POPPopupBridge.h"
+#import "POPPopUpBridge.h"
 
 @interface CDVWKWebViewEngine : CDVPlugin <CDVWebViewEngineProtocol, WKScriptMessageHandler, WKNavigationDelegate, POPPopupBridgeDelegate>
 
 @property (nonatomic, strong, readonly) id <WKUIDelegate> uiDelegate;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
 @property (nonatomic, strong) POPPopupBridge *popupBridge;
-
+#endif
 @end

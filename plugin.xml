@@ -97,7 +97,10 @@
         <!-- Popup Bridge -->
         <header-file src="src/ios/AppDelegate+PopupBridge.h" />
         <source-file src="src/ios/AppDelegate+PopupBridge.m" />
-        <framework src="PopupBridge" type="podspec" spec="~> 0.1.0" />
+
+        <header-file src="src/ios/POPPopUpBridge.h" />
+        <source-file src="src/ios/POPPopUpBridge.m" />
+
         <config-file target="*-Info.plist" parent="CFBundleURLTypes">
             <array>
                 <dict>

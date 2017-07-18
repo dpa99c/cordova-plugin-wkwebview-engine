@@ -123,7 +123,9 @@
     WKWebView* wkWebView = [[WKWebView alloc] initWithFrame:self.engineWebView.frame configuration:configuration];
     wkWebView.UIDelegate = self.uiDelegate;
     self.engineWebView = wkWebView;
+    #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
     self.popupBridge = [[POPPopupBridge alloc] initWithWebView:wkWebView delegate:self];
+    #endif
 
     if (IsAtLeastiOSVersion(@"9.0") && [self.viewController isKindOfClass:[CDVViewController class]]) {
         wkWebView.customUserAgent = ((CDVViewController*) self.viewController).userAgent;
@@ -553,6 +555,7 @@ static void * KVOContext = &KVOContext;
     }
 }
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
 #pragma mark - POPPopupBridge
 
 - (void)popupBridge:(POPPopupBridge *)bridge requestsPresentationOfViewController:(UIViewController *)viewController {
@@ -562,7 +565,7 @@ static void * KVOContext = &KVOContext;
 - (void)popupBridge:(POPPopupBridge *)bridge requestsDismissalOfViewController:(UIViewController *)viewController {
     [viewController dismissViewControllerAnimated:YES completion:nil];
 }
-
+#endif
 @end
 
 #pragma mark - CDVWKWeakScriptMessageHandler

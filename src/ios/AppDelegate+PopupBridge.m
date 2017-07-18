@@ -1,6 +1,6 @@
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
 #import "AppDelegate+PopupBridge.h"
 #import <objc/runtime.h>
-#import "POPPopupBridge.h"
 
 @implementation AppDelegate(PopupBridge)
 
@@ -47,3 +47,4 @@
 }
 
 @end
+#endif
