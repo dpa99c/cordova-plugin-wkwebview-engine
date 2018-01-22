@@ -26,10 +26,10 @@
     <keywords>cordova,wkwebview</keywords>
     <repo>https://github.com/ionic-team/cordova-plugin-ionic-webview</repo>
 
-	<engines>
+    <engines>
         <engine name="cordova-ios" version=">=4.0.0-dev"/>
         <engine name="apple-ios" version=">=9.0"/>
-	</engines>
+    </engines>
 
     <!-- ios -->
     <platform name="ios">
@@ -38,7 +38,7 @@
         </js-module>
 
         <config-file target="config.xml" parent="/*">
-            <allow-navigation href="http://localhost:8080/*"/>
+            <allow-navigation href="http://localhost:12344/*"/>
             <feature name="CDVWKWebViewEngine">
                 <param name="ios-package" value="CDVWKWebViewEngine"/>
             </feature>

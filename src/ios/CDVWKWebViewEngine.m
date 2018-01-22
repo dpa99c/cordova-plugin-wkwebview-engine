@@ -28,7 +28,7 @@
 #import "GCDWebServer.h"
 #import "GCDWebServerPrivate.h"
 
-#define CDV_LOCAL_SERVER @"http://localhost:8080"
+#define CDV_LOCAL_SERVER @"http://localhost:12344"
 #define CDV_BRIDGE_NAME @"cordova"
 #define CDV_IONIC_STOP_SCROLL @"stopScroll"
 
@@ -127,7 +127,7 @@
         self.webServer = [[GCDWebServer alloc] init];
         [self.webServer addGETHandlerForBasePath:@"/" directoryPath:@"/" indexFilename:nil cacheAge:3600 allowRangeRequests:YES];
         NSDictionary *options = @{
-                                  GCDWebServerOption_Port: @(8080),
+                                  GCDWebServerOption_Port: @(12344),
                                   GCDWebServerOption_BindToLocalhost: @(YES),
                                   GCDWebServerOption_ServerName: @"Ionic"
                                   };
@@ -256,13 +256,13 @@
 - (void)keyboardDisplayDoesNotRequireUserAction
 {
     SEL sel = sel_getUid("_startAssistingNode:userIsInteracting:blurPreviousNode:userObject:");
-  	Class WKContentView = NSClassFromString(@"WKContentView");
-  	Method method = class_getInstanceMethod(WKContentView, sel);
-  	IMP originalImp = method_getImplementation(method);
-  	IMP imp = imp_implementationWithBlock(^void(id me, void* arg0, BOOL arg1, BOOL arg2, id arg3) {
-    		((void (*)(id, SEL, void*, BOOL, BOOL, id))originalImp)(me, sel, arg0, TRUE, arg2, arg3);
-  	});
-  	method_setImplementation(method, imp);
+    Class WKContentView = NSClassFromString(@"WKContentView");
+    Method method = class_getInstanceMethod(WKContentView, sel);
+    IMP originalImp = method_getImplementation(method);
+    IMP imp = imp_implementationWithBlock(^void(id me, void* arg0, BOOL arg1, BOOL arg2, id arg3) {
+            ((void (*)(id, SEL, void*, BOOL, BOOL, id))originalImp)(me, sel, arg0, TRUE, arg2, arg3);
+    });
+    method_setImplementation(method, imp);
 }
 
 - (void)onReset
